@@ -11,3 +11,5 @@ section = ["xhtml"]
 mediaType = "application/xhtml+xml"
 baseName = "index" 
 isPlainText = false
+
+publishDir = "build" # build or nullbuild are supported by the server in case we ever want to run this there.

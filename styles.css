@@ -451,6 +451,7 @@ td {
  * Bottom Section
  *----------------------------------------------------------------------------*/
 
+/* Modification for nullman.nl, we're going to redefine the footer.
 #footer {
     clear: both;
     margin: 0;
@@ -458,6 +459,7 @@ td {
     text-align: center;
     width: 98%;
 }
+*/
 
 /*------------------------------------------------------------------------------
  * Right Side Menu
@@ -1264,7 +1266,7 @@ a:visited.banner-link {
 	flex: 1;
 }
 
-footer {
+#footer {
 	position: fixed;
 	bottom: 0;
 	left: 0;

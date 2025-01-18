@@ -1,0 +1,13 @@
+# This file exists only for hugo builds in case you need to do those locally!
+# The PHP server should read it's own locally hosted config
+
+[outputs]
+home = ["xhtml"]  
+page = ["xhtml"]  
+section = ["xhtml"] 
+
+[outputFormats]
+[xhtml]
+mediaType = "application/xhtml+xml"
+baseName = "index" 
+isPlainText = false

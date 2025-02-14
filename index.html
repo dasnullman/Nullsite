@@ -35,7 +35,7 @@
 	</div>
 
 	<div class="banner">
-	  <h3> This site was made by real American patriots,
+	  <h3 id="custom-banner"> This site was made by real American patriots,
 		<a href="https://nullman.nl/patriots.mp4" class="banner-link">
 		  here</a>'s how you can tell
 	  </h3>
@@ -75,6 +75,20 @@
 	  <p> A majority of the CSS for this site was made by Nullman (Kyle Sherman), it was modified by me. </p>
 	</div>
 	</div>
-	  
+
+
+	<script>
+	// Equivalent to script defer
+	function getIsValentinesDay() 
+	{
+	    const today = new Date(); // Now
+	    return today.getMonth() === 1 && today.getDate() === 14;
+	}
+	
+	if (getIsValentinesDay()) 
+	{
+	    document.getElementById("custom-banner").text = "What color's the CN tower? It's red tonight.";
+	}
+	</script>
   </body>
 </html>

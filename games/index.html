@@ -34,12 +34,13 @@
           </h3>
         </div>
 
-        <div class="banner">
-          <h3> This site was made by real American patriots,
-                <a href="https://nullman.nl/patriots.mp4" class="banner-link">
-                  here</a>'s how you can tell.
-          </h3>
-        </div>
+        <div class="banner" id="american-patriots">
+	  <h3 id="custom-banner"> This site was made by real American patriots,
+		<a href="https://nullman.nl/patriots.mp4" class="banner-link">
+		  here</a>'s how you can tell
+	  </h3>
+	</div>
+
 
 
         <div id="menu">
@@ -73,5 +74,21 @@
 
 	  <p> A majority of the CSS for this site was made by Nullman (Kyle Sherman), it was modified by me. </p>
 	</div>
+
+	<script>
+	// Equivalent to script defer
+	function getIsValentinesDay() 
+	{
+	    const today = new Date(); // Now
+	    return today.getMonth() === 1 && today.getDate() === 14;
+	}
+	
+	if (getIsValentinesDay()) 
+	{
+	    document.getElementById("american-patriots").style.backgroundColor = "#E55451";
+	    document.getElementById("custom-banner").innerText = "What color's the CN tower? It's red tonight.";
+	    document.getElementById("custom-banner").style.color = "#FFFFFF"; // Improved contrast
+	}
+	</script>
   </body>
 </html>

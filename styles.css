@@ -1270,6 +1270,11 @@ a:visited.banner-link {
 	position: fixed;
 	bottom: 0;
 	left: 0;
+} 
+
+.list-of-guides li 
+{
+	margin-left: 20px;
 }
 
 /* Modifications for nullman.nl end here */

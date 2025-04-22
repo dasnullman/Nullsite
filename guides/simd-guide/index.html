@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+	<meta name="author" content="The Nullman" />
+	<meta name="keywords" content="America" />
+	<meta name="description" content="The Nullman's website" />
+	<meta name="robots" content="all" />
+
+	<link rel="author" href="https://nullman.nl/" />
+	<link rel="home" href="/" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="styles.css" />
+
+	<link rel="dns-prefetch" href="http://nullman.net" />
+
+
+	<title> The Nullman's personal site </title>
+  </head>
+
+  <body>
+	<div class="content">
+	<div id="header">
+	  <h1 class="title">
+		<span> The Nullman </span>
+	  </h1>
+	</div>
+
+	<div class="banner">
+	  <h3>
+		You may be looking for Nullman (Kyle Sherman), if so look <a href="http://nullman.net" class="banner-link">here</a>.
+	  </h3>
+	</div>
+
+	<div class="banner" id="american-patriots">
+	  <h3 id="custom-banner"> This site was made by real American patriots,
+		<a href="https://nullman.nl/patriots.mp4" class="banner-link">
+		  here</a>'s how you can tell
+	  </h3>
+	</div>
+	
+
+	<div id="menu">
+
+	  <div class="menu-item">
+		<a title="Home" href="https://nullman.nl/"> Home </a>
+	  </div>
+
+	  <div class="menu-item">
+		<a title="My github (dasnullman)" href="https://github.com/dasnullman/"> Github </a>
+	  </div>
+
+	  <div class="menu-item">
+		<a title="Resume (web)" href="https://nullman.nl/resume/"> Resume </a>
+	  </div>
+
+	  <div class="menu-item">
+		<a title="Games I've made" href="https://nullman.nl/games/"> Games </a>
+	  </div>
+	  
+	  <div class="menu-item-current">
+		<a title="Guides" href="https://nullman.nl/guides/"> Guides </a>
+	  </div>
+	</div>
+
+	<h1 id="simd_guide_header"> The SIMD guide for C and C++ programmers who are also retarded </h1>
+	<h2 id="simd_guide_header_author"> By The Nullman </h2>
+	
+	<h1 id="simd_guide_introduction_header"> The basics </h1>
+	
+	<p> 
+	SIMD stands for Single Instruction, Multiple Data. </br>
+	It's a vectorized beyond-scalar high-performance register-space technology given to us by The Lord! <small>praise be!</small> </br>
+	
+	The following code works here to illustrate a scalar approach: </br>
+	</p>
+	
+<pre><code>
+// Scalar 
+
+float nums[4] = // ...
+float nums2[4] = // ...
+
+float nums3[4]; // Empty
+	
+for (int i = 0; i < 4; i++)
+{
+	nums3[i] = nums[i] + nums2[i];
+}
+</code></pre> </br>
+	
+	<p> 
+	The problem in the above code is the large instruction count. </br>
+	Across larger arrays (E.G., 6 billion nums) we're dealing with an insane amount of cycles. </br>
+	But what if we could process in batches?</br>
+	</p>
+	
+	<h1> The solution (from The Lord) </h1>
+	
+    <p> 
+	Your first thought might be to unroll the loop, process 4 nums at once as 4 lines of code. </br>
+	This can be faster and help the CPU handle things better, but it won't provide a high enough speedup. </br>
+	Hence on the 6th day, God said, "Let there be 4 floats at once" <small>praise be!</small> </br>
+	</br>
+	
+	With The Lord as Intel's shepherd <small>praise be!</small>, they would go on to make SSE. </br>
+	Standing for SIMD Streaming Extensions, this is the core SIMD technology you'll be using as a result of it's wide support and ease of use. </br>
+	</p>
+	
+	<h1> Getting started with SSE in your C/C++ project. </h1>
+	
+	<p>
+	To begin, include headers based on platform. Usually you'll do something like: </br>
+	</p>
+	
+<pre><code>
+#if MSC_VER
+#include <intrin.h>
+#else 
+#include <x86intrin.h>
+#endif 
+</code></pre> </br>
+	
+	<p>
+	The header <code>x86intrin.h</code> is portable across most compilers, except for VC++. </br>
+	On VC++ you'll want to include <code>intrin.h</code> which pulls in all of the intrinsics. This will include intrinsics for ARM if you're on the ARM platform. </br>
+	</p>
+	
+	<h1> The part where I explain them </h1>
+	
+	<p>
+	The core of every SIMD technology is the vector register, a CPU wide register like xmm0, xmm1, etc... (x86 SSE specific) </br> 
+	If you're a fan of linear algebra you'll be a fan of these vectors. </br>
+	But if you're not a fan, you can think of these vector registers like arrays that have already been allocated, have a static size, and must be accessed using a custom function. </br>
+	</br>
+	
+	These are wide registers, beyond the normal size of 32 or 64 bits that your platform normally handles. </br>
+	With SSE you're dealing with 128 bit wide registers. AVX 256 bit wide registers, AVX-512 512 bit wide registers. </br> 
+	Some older SIMD solutions (E.G., Intel MMX, AMD 3dnow!) used 64 bit long registers instead, but most solutions on x86 nowadays are entirely wide register based </br>
+	
+	At their core, these registers are just a wide data store. But they're designed to store packed data in a vector of set size. (E.G., 128 bit wide register supports 4 32 bit single precision floats or 2 64 bit <code>double</code>-precision floats) </br>
+	What's special about them are the available instructions, which operate upon data that's packed into the register. </br>
+	</p>
+	
+	<h1> The part where you use them </h1>
+	
+	<p>
+	Now that you have intrinsics, you can get a vector. The datatypes available to you are: </br>
+	<ul>
+		<li> __m128, the SSE 128 bit wide register that supports single-precision floats </li>
+		<li> __m128i, the SSE 128 bit wide register that supports integers </li>
+		<li> __m128d, the SSE 128 bit wide register that supports <code>double</code>-precision floats</li>
+	</ul>
+	
+	Let's begin with floats, because that's what you should be using you filthy double-precision float user. </br>
+	Enjoy this code block for an explanation </br>
+	</p>
+	
+<pre><code>
+__m128 v0, v1, v2;
+v0 = _mm_set_ps(1.f, 4.f, 1024.f, 2.f); // <- The multiple data 
+v1 = _mm_set_ps(217834.f, 3.f, 6.f, 9.f);
+v2 = _mm_setzero_ps();
+	
+v2 = _mm_add_ps(v0, v1); // <- The single instruction.
+	
+float fILoveHungarianNotation = 0.f;
+fILoveHungarianNotation = (float)_mm_extract_ps(v2, 0);
+</code></pre> </br>
+	
+	<p>
+	In this case we define 3 vectors with their intrinsic types, corresponding to registers in the CPU </br>
+	The first vector is set using <code>_mm_set_ps</code> to contain <code>[1.f, 4.f, 1024.f, 2.f]</code> </br>
+	The second vector is set to contain <code>[217834.f, 3.f, 6.f, 9.f]</code> </br>
+	The third vector, our destination is set to be entirely zero using <code>_mm_setzero_ps</code> </br>
+	
+	</br>
+	We then add these two using _mm_add_ps which adds two float vectors. </br>
+	Then we use <code>_mm_extract_ps</code> on lane <code>0</code> (the argument) to get a value out of our destination vector. </br>
+	</p>
+	
+	<h1> Gotcha! </h1>
+	
+	<p>
+	If you've run the above code in your own situation, you might notice that <code>fILoveHungarianNotation</code> contains 11.f </br>
+	This is because Intel and The Lord <small>praise be!</small> love little-endianness. </br>
+	They had to choose an order, and as long as it's consistent, it's okay. Therefore, what you think of as the order, is actually the reverse </br>
+	With a vector like <code>[1.f, 2.f, 3.f, 4.f]</code>, extracting lane <code>0</code> will get you 4.f </br>
+	If you're not a fan of this, or require specific re-ordering, better to use <code>_mm_setr_ps</code> which sets them in inverse order to allow your big-endian brain to more easily understand/preserves order. </br>
+	<code>_mm_set_ps</code> and <code>_mm_setr_ps</code> are both equally fast, so you're fine. </br>
+	</p>
+	
+	<h1> The part where I explain the naming scheme </h1>
+	
+	<p>
+	If you're literate, you might've noticed that the naming scheme looks weird. </br>
+	But fortunately, it's highly descriptive, and uses the hungarian notation. </br>
+	</p>
+	
+	<h2> _mm whaaaa </h2>
+	
+	<p>
+	Things in SSE, AVX, are prefaced with _mm because of MMX, the old Intel long register SIMD extension. </br>
+	</p>
+	
+	<h2> The other stuff </h2>
+	
+	<p>
+	PS stands for packed single-precision. Meaning 32 bit <code>float</code>s. </br>
+	</p>
+	
+	<p>
+	PD stands for packed <code>double</code>-precision. Meaning 64 bit <code>double</code>s. </br>
+	</p>
+	
+	<p>
+	SS stands for single single-precision float. Usually this means the lower lane. </br>
+	E.G., <code>_mm_add_ss</code> adds the lower (lane 0) single-precision float in both of it's __m128 arguments. </br>
+	</p>
+	
+	<p>
+	EPI means signed integer. So the <code>int</code> data type. </br>
+	The following integer is the size in bits. epi8 is an 8 bit integer or int8_t. epi16 is a 16 bit integer or int16_t </br>
+	</p>
+	
+	<p>
+	EPU is the unsigned version of EPI. So the <code>unsigned int</code> data type. </br>
+	The following integer is also the size in bits here. epu8 is an 8 bit unsigned integer or uint8_t. epu16 is a 16 but unsigned integer or uint16_t. </br>
+	</p>
+	
+	<p>
+	CMP stands for compare. So <code>_mm_cmpeq_ps</code> compares (checking for equivalency) two PS packed single-precision float vectors (<code>__m128</code>) </br>
+	</p>
+	
+	<p>
+	CVT stands for convert, but also copy. </br>
+	E.G., <code>_mm_cvtps_epi32</code> converts PS packed single-precision <code>float</code>s in a vector to epi32 int32_t signed 32 bit integers (<code>__m128i</code>) </br>
+	Meanwhile, <code>_mm_cvtss_f32</code> returns the lower single-precision float from it's __m128 argument. (This is a copy operation in assembler, the intrinsic just makes it return.) </br>
+	</p>
+	
+	<p>
+	These are the core names you'll find, the rest are highly intuitive and easy to understand once you use one of them. </br>
+	</p>
+	
+	<h1> Resources from Intel </h1>
+	
+	<p>
+	The Intel Intrinsics guide lets you search. </br>
+	Find it <a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html">here</a> </br>
+	</p>
+	
+	</br></br></br>
+
+	<div id="footer">
+	  <p> Copyright (C) 2024 The Nullman. All rights reserved. <br/>
+		This site, domain, the server that runs it, and The Netherlands are all property of the United States of America. 
+	  </p>
+
+	  <p> A majority of the CSS for this site was made by Nullman (Kyle Sherman), it was modified by me. </p>
+	</div>
+	</div>
+
+
+	<script>
+	// Equivalent to script defer
+	function getIsValentinesDay() 
+	{
+	    const today = new Date(); // Now
+	    return today.getMonth() === 1 && today.getDate() === 14;
+	}
+	
+	if (getIsValentinesDay()) 
+	{
+	    document.getElementById("american-patriots").style.backgroundColor = "#E55451";
+	    document.getElementById("custom-banner").innerText = "What color's the CN tower? It's red tonight.";
+	    document.getElementById("custom-banner").style.color = "#FFFFFF"; // Improved contrast
+	}
+	</script>
+  </body>
+</html>

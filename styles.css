@@ -1273,7 +1273,7 @@ a:visited.banner-link {
   left: 0;
   width: 100%;
   background-color: var(--background);  /* optional for contrast */
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* optional visual separation */
   z-index: 1000;
 }

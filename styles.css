@@ -1272,11 +1272,12 @@ a:visited.banner-link {
 	left: 0;
 } 
 
-.list-of-guides 
+.list-of-guides li 
 {
-  list-style-position: inside; 
-  padding-left: 60px; 
+  padding-left: 60px !important;
+  list-style-position: outside !important;
 }
+
 
 
 /* Modifications for nullman.nl end here */

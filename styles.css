@@ -1287,10 +1287,8 @@ a:visited.banner-link {
   list-style-position: outside !important;
 }
 
-/* Specific styling for the Slackware propaganda gif */
 .slack-propaganda {
-  width: 150px;
-  height: auto;
+	/* Nullman */
 }
 
 

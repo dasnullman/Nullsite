@@ -1281,10 +1281,16 @@ a:visited.banner-link {
 }
 
 
-.list-of-guides li 
+.list-of-guides li
 {
   margin-left: 120px !important;
   list-style-position: outside !important;
+}
+
+/* Specific styling for the Slackware propaganda gif */
+.slack-propaganda {
+  width: 150px;
+  height: auto;
 }
 
 

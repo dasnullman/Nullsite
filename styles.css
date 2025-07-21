@@ -351,6 +351,7 @@ td {
     float: right;
     padding: 0 0 1em 1em;
     width: 40%;
+    max-width: 100px;
 }
 
 .wrap-left { }

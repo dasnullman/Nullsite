@@ -1299,3 +1299,348 @@ a:visited.banner-link {
 /*==============================================================================
  * default.css ends here
  *============================================================================*/
+
+/*------------------------------------------------------------------------------
+ * Nullsite Refresh - 2026
+ *----------------------------------------------------------------------------*/
+
+:root {
+    --refresh-bg: #f8f7f4;
+    --refresh-surface: #fdfdfb;
+    --refresh-surface-strong: #ffffff;
+    --refresh-line: #d9d4c8;
+    --refresh-line-strong: #b9b2a2;
+    --refresh-text: #1f1f1b;
+    --refresh-muted: #6a675f;
+    --refresh-accent: #c95f3f;
+    --refresh-accent-soft: #f5ddd4;
+    --refresh-link: #8f3f2a;
+    --refresh-link-hover: #5e271a;
+    --footer-offset: 9rem;
+}
+
+html {
+    background: linear-gradient(180deg, #fbfaf7 0%, #f6f4ee 55%, #efebe2 100%);
+}
+
+body {
+    background: radial-gradient(circle at 20% -10%, rgba(201, 95, 63, 0.12), transparent 45%),
+                radial-gradient(circle at 100% 5%, rgba(91, 101, 140, 0.09), transparent 40%),
+                var(--refresh-bg);
+    color: var(--refresh-text);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.72;
+    letter-spacing: 0.005em;
+    padding: 0;
+    padding-bottom: 3rem !important;
+}
+
+a:link,
+a:visited {
+    color: var(--refresh-link);
+    text-decoration-color: rgba(143, 63, 42, 0.35);
+    text-underline-offset: 0.18em;
+}
+
+a:hover,
+a:active {
+    color: var(--refresh-link-hover);
+    text-decoration-color: rgba(94, 39, 26, 0.65);
+}
+
+.content :not(pre) > code {
+    background: rgba(201, 95, 63, 0.16);
+    color: #7d311f;
+    border: 1px solid rgba(201, 95, 63, 0.28);
+    border-radius: 0.45rem;
+    padding: 0.08rem 0.38rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+    white-space: normal;
+}
+
+.content pre {
+    margin: 1.15rem 0 1.45rem;
+    padding: 1rem 1.15rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(26, 23, 18, 0.18);
+    background: linear-gradient(180deg, #2a2621, #1d1a16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(24, 22, 18, 0.18);
+    overflow-x: auto;
+}
+
+.content pre code {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #f5efe1;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95em;
+    line-height: 1.65;
+    white-space: pre;
+}
+
+.content {
+    width: min(1180px, 94vw);
+    margin: clamp(0.75rem, 2vw, 2rem) auto;
+    padding: clamp(1rem, 2.2vw, 2rem);
+    padding-bottom: calc(clamp(1rem, 2.2vw, 2rem) + var(--footer-offset) + env(safe-area-inset-bottom, 0px));
+    border: 1px solid rgba(185, 178, 162, 0.4);
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(253, 252, 247, 0.92));
+    box-shadow: 0 28px 80px rgba(44, 40, 30, 0.14);
+}
+
+#header {
+    margin: 0;
+    padding: 0;
+}
+
+h1.title {
+    margin: 0;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    color: #201d19;
+    text-transform: uppercase;
+}
+
+h1.title span {
+    display: inline-block;
+    padding-bottom: 0.15rem;
+    border-bottom: 2px solid rgba(201, 95, 63, 0.4);
+}
+
+.banner {
+    margin: 0.85rem 0;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--refresh-line);
+    border-radius: 0.875rem;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(246, 241, 234, 0.95));
+}
+
+#american-patriots.is-valentines {
+    background: linear-gradient(135deg, #c81d43, #9f1239) !important;
+    border-color: #7f1635;
+    box-shadow: 0 10px 24px rgba(159, 18, 57, 0.35);
+}
+
+#american-patriots.is-valentines h3,
+#american-patriots.is-valentines a {
+    color: #fff7fb !important;
+}
+
+
+.banner h3 {
+    margin: 0;
+    color: #423b31;
+    font-size: 0.98rem;
+    font-style: normal;
+}
+
+.wrap-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+}
+
+.wrap-right img {
+    width: 6em;
+    padding: 0;
+    border-radius: 0.625rem;
+    border: 1px solid var(--refresh-line);
+    box-shadow: 0 8px 22px rgba(45, 39, 30, 0.12);
+}
+
+#menu {
+    float: none;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+    margin: 1.35rem 0;
+    padding: 0;
+}
+
+.menu-item,
+.menu-item-current {
+    border: 1px solid var(--refresh-line-strong);
+    border-radius: 0.75rem;
+    background: var(--refresh-surface);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    text-align: center;
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.menu-item a,
+.menu-item-current a {
+    display: block;
+    padding: 0.6rem 0.5rem;
+    text-decoration: none;
+    color: #3a332b;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+}
+
+.menu-item:hover,
+.menu-item-current:hover {
+    transform: translateY(-1px);
+    border-color: var(--refresh-accent);
+    box-shadow: 0 10px 22px rgba(55, 47, 35, 0.12);
+}
+
+.menu-item-current {
+    background: linear-gradient(180deg, #fff6f2, var(--refresh-accent-soft));
+    border-color: rgba(201, 95, 63, 0.75);
+}
+
+#home_header {
+    margin: 0.5rem 0 1rem;
+    font-size: 1.38rem;
+    letter-spacing: 0.06em;
+    color: #2a251f;
+}
+
+.site-sections {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.site-section {
+    grid-column: span 6;
+    min-height: 100%;
+    padding: 1rem 1rem 1.05rem;
+    border: 1px solid var(--refresh-line);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, var(--refresh-surface-strong), #faf8f2);
+    box-shadow: 0 8px 24px rgba(49, 42, 31, 0.08);
+}
+
+.site-section-wide {
+    grid-column: 1 / -1;
+}
+
+.site-section h3 {
+    margin: 0 0 0.6rem;
+    font-size: 0.96rem;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: #4b4035;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgba(185, 178, 162, 0.7);
+}
+
+.site-section p {
+    margin: 0;
+    color: #2c2823;
+    text-align: left;
+}
+
+.site-section ul {
+    margin: 0.65rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.site-section li {
+    margin: 0.3rem 0;
+    color: #302c26;
+}
+
+#footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(185, 178, 162, 0.9);
+    background: rgba(253, 251, 246, 0.96);
+    box-shadow: 0 -8px 20px rgba(33, 30, 23, 0.12);
+    backdrop-filter: blur(3px);
+}
+
+#footer p {
+    margin: 0.6rem 0;
+    color: var(--refresh-muted);
+}
+
+@media (max-width: 1000px) {
+    #menu {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .site-section {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        --footer-offset: 12rem;
+    }
+
+    body {
+        font-size: 1.08em;
+        line-height: 1.78;
+        padding-bottom: 1rem !important;
+    }
+
+    .content {
+        width: 96vw;
+        margin: 0.5rem auto;
+        padding: 0.8rem;
+        border-radius: 0.875rem;
+    }
+
+    h1.title {
+        font-size: 1.55rem;
+        letter-spacing: 0.07em;
+    }
+
+    .banner {
+        margin: 0.6rem 0;
+        padding: 0.66rem 0.7rem;
+    }
+
+    #menu {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
+        margin: 1rem 0;
+    }
+
+    .menu-item a,
+    .menu-item-current a {
+        padding: 0.56rem 0.35rem;
+        font-size: 0.94em;
+    }
+
+    #home_header {
+        margin-bottom: 0.7rem;
+        font-size: 1.25em;
+    }
+
+    .site-sections {
+        gap: 0.72rem;
+    }
+
+    .site-section {
+        padding: 0.8rem;
+        border-radius: 0.75rem;
+    }
+
+    .site-section h3 {
+        font-size: 0.92em;
+    }
+
+    .wrap-right {
+        display: none;
+    }
+}

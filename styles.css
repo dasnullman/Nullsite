@@ -1316,6 +1316,7 @@ a:visited.banner-link {
     --refresh-accent-soft: #f5ddd4;
     --refresh-link: #8f3f2a;
     --refresh-link-hover: #5e271a;
+    --footer-offset: 9rem;
 }
 
 html {
@@ -1327,6 +1328,9 @@ body {
                 radial-gradient(circle at 100% 5%, rgba(91, 101, 140, 0.09), transparent 40%),
                 var(--refresh-bg);
     color: var(--refresh-text);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     line-height: 1.72;
     letter-spacing: 0.005em;
     padding: 0;
@@ -1346,12 +1350,47 @@ a:active {
     text-decoration-color: rgba(94, 39, 26, 0.65);
 }
 
+.content :not(pre) > code {
+    background: rgba(201, 95, 63, 0.16);
+    color: #7d311f;
+    border: 1px solid rgba(201, 95, 63, 0.28);
+    border-radius: 0.45rem;
+    padding: 0.08rem 0.38rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+    white-space: normal;
+}
+
+.content pre {
+    margin: 1.15rem 0 1.45rem;
+    padding: 1rem 1.15rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(26, 23, 18, 0.18);
+    background: linear-gradient(180deg, #2a2621, #1d1a16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(24, 22, 18, 0.18);
+    overflow-x: auto;
+}
+
+.content pre code {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #f5efe1;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95em;
+    line-height: 1.65;
+    white-space: pre;
+}
+
 .content {
     width: min(1180px, 94vw);
     margin: clamp(0.75rem, 2vw, 2rem) auto;
     padding: clamp(1rem, 2.2vw, 2rem);
+    padding-bottom: calc(clamp(1rem, 2.2vw, 2rem) + var(--footer-offset) + env(safe-area-inset-bottom, 0px));
     border: 1px solid rgba(185, 178, 162, 0.4);
-    border-radius: 24px;
+    border-radius: 1.5rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(253, 252, 247, 0.92));
     box-shadow: 0 28px 80px rgba(44, 40, 30, 0.14);
 }
@@ -1380,9 +1419,21 @@ h1.title span {
     margin: 0.85rem 0;
     padding: 0.8rem 1rem;
     border: 1px solid var(--refresh-line);
-    border-radius: 14px;
+    border-radius: 0.875rem;
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(246, 241, 234, 0.95));
 }
+
+#american-patriots.is-valentines {
+    background: linear-gradient(135deg, #c81d43, #9f1239) !important;
+    border-color: #7f1635;
+    box-shadow: 0 10px 24px rgba(159, 18, 57, 0.35);
+}
+
+#american-patriots.is-valentines h3,
+#american-patriots.is-valentines a {
+    color: #fff7fb !important;
+}
+
 
 .banner h3 {
     margin: 0;
@@ -1398,9 +1449,9 @@ h1.title span {
 }
 
 .wrap-right img {
-    width: 96px;
+    width: 6em;
     padding: 0;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     border: 1px solid var(--refresh-line);
     box-shadow: 0 8px 22px rgba(45, 39, 30, 0.12);
 }
@@ -1418,7 +1469,7 @@ h1.title span {
 .menu-item,
 .menu-item-current {
     border: 1px solid var(--refresh-line-strong);
-    border-radius: 12px;
+    border-radius: 0.75rem;
     background: var(--refresh-surface);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     text-align: center;
@@ -1466,7 +1517,7 @@ h1.title span {
     min-height: 100%;
     padding: 1rem 1rem 1.05rem;
     border: 1px solid var(--refresh-line);
-    border-radius: 16px;
+    border-radius: 1rem;
     background: linear-gradient(180deg, var(--refresh-surface-strong), #faf8f2);
     box-shadow: 0 8px 24px rgba(49, 42, 31, 0.08);
 }
@@ -1503,9 +1554,17 @@ h1.title span {
 }
 
 #footer {
-    margin-top: 1.65rem;
-    padding-top: 1.1rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid rgba(185, 178, 162, 0.9);
+    background: rgba(253, 251, 246, 0.96);
+    box-shadow: 0 -8px 20px rgba(33, 30, 23, 0.12);
+    backdrop-filter: blur(3px);
 }
 
 #footer p {
@@ -1524,7 +1583,13 @@ h1.title span {
 }
 
 @media (max-width: 700px) {
+    :root {
+        --footer-offset: 12rem;
+    }
+
     body {
+        font-size: 1.08em;
+        line-height: 1.78;
         padding-bottom: 1rem !important;
     }
 
@@ -1532,7 +1597,7 @@ h1.title span {
         width: 96vw;
         margin: 0.5rem auto;
         padding: 0.8rem;
-        border-radius: 14px;
+        border-radius: 0.875rem;
     }
 
     h1.title {
@@ -1554,12 +1619,12 @@ h1.title span {
     .menu-item a,
     .menu-item-current a {
         padding: 0.56rem 0.35rem;
-        font-size: 0.88rem;
+        font-size: 0.94em;
     }
 
     #home_header {
         margin-bottom: 0.7rem;
-        font-size: 1.15rem;
+        font-size: 1.25em;
     }
 
     .site-sections {
@@ -1568,11 +1633,11 @@ h1.title span {
 
     .site-section {
         padding: 0.8rem;
-        border-radius: 12px;
+        border-radius: 0.75rem;
     }
 
     .site-section h3 {
-        font-size: 0.86rem;
+        font-size: 0.92em;
     }
 
     .wrap-right {

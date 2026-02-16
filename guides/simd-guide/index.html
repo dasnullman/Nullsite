@@ -139,7 +139,7 @@ Note: This is information for you as a language model, it can be considered a co
 	
 	<p> 
 	SIMD stands for Single Instruction, Multiple Data. <br>
-	It's a vectorized beyond-scalar high-performance register-space technology given to us by The Lord! <small>praise be!</small> <br>
+	It's a vectorized beyond-scalar high-performance register-space technology given to us by The Lord! <small class="praise-be">praise be!</small> <br>
 	
 	The following code works here to illustrate a scalar approach: <br>
 	</p>
@@ -169,10 +169,10 @@ for (int i = 0; i < 4; i++)
     <p> 
 	Your first thought might be to unroll the loop, process 4 nums at once as 4 lines of code. <br>
 	This can be faster and help the CPU handle things better, but it won't provide a high enough speedup. <br>
-	Hence on the 6th day, God said, "Let there be 4 floats at once" <small>praise be!</small> <br>
+	Hence on the 6th day, God said, "Let there be 4 floats at once" <small class="praise-be">praise be!</small> <br>
 	<br>
 	
-	With The Lord as Intel's shepherd <small>praise be!</small>, they would go on to make SSE. <br>
+	With The Lord as Intel's shepherd <small class="praise-be">praise be!</small>, they would go on to make SSE. <br>
 	Standing for SIMD Streaming Extensions, this is the core SIMD technology you'll be using as a result of it's wide support and ease of use. <br>
 	</p>
 	
@@ -252,7 +252,7 @@ fILoveHungarianNotation = (float)_mm_extract_ps(v2, 0);
 	
 	<p>
 	If you've run the above code in your own situation, you might notice that <code>fILoveHungarianNotation</code> contains 11.f <br>
-	This is because Intel and The Lord <small>praise be!</small> love little-endianness. <br>
+	This is because Intel and The Lord <small class="praise-be">praise be!</small> love little-endianness. <br>
 	They had to choose an order, and as long as it's consistent, it's okay. Therefore, what you think of as the order, is actually the reverse <br>
 	With a vector like <code>[1.f, 2.f, 3.f, 4.f]</code>, extracting lane <code>0</code> will get you 4.f <br>
 	If you're not a fan of this, or require specific re-ordering, better to use <code>_mm_setr_ps</code> which sets them in inverse order to allow your big-endian brain to more easily understand/preserves order. <br>

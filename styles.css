@@ -1350,6 +1350,33 @@ a:active {
     text-decoration-color: rgba(94, 39, 26, 0.65);
 }
 
+
+.content small.praise-be {
+    display: inline-block;
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgb(15, 126, 227);
+    background-image: linear-gradient(90deg, rgb(15, 126, 227), #ffbbec, rgb(15, 126, 227));
+    background-size: 220% 100%;
+    background-position: 0% 50%;
+    animation: praise-be-gradient-slide 4.5s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes praise-be-gradient-slide {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .content :not(pre) > code {
     background: rgba(201, 95, 63, 0.16);
     color: #7d311f;

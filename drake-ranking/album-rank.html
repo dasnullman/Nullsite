@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drake Most Listened</title>
+  <style>
+    @font-face {
+      font-family: 'Anthropic Serif';
+      src: url('anthropic-serif.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Anthropic Serif', Georgia, serif;
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: normal;
+      text-align: center;
+      letter-spacing: -0.03em;
+      margin-bottom: 50px;
+      color: #fff;
+    }
+
+    .edit-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: #222;
+      color: #ccc;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .edit-toggle:hover {
+      background: #333;
+      color: #fff;
+      border-color: #666;
+    }
+
+    .edit-mode .edit-toggle {
+      background: #444;
+      color: #ffdd57;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+    }
+
+    .album {
+      display: flex;
+      gap: 16px;
+      padding: 12px;
+      background: #111;
+      border-radius: 10px;
+      border: 1px solid #1a1a1a;
+      transition: all 0.2s ease;
+    }
+
+    .album:hover {
+      transform: translateY(-3px);
+      border-color: #333;
+      background: #161616;
+    }
+
+    .cover {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+      flex-shrink: 0;
+    }
+
+    .info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .album-title {
+      font-size: 1.35rem;
+      margin-bottom: 3px;
+      color: #ffffff;
+    }
+
+    .year {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .top-track {
+      font-size: 1rem;
+      color: #bbb;
+      margin-top: 2px;
+      min-height: 1.3em;
+    }
+
+    .top-track-display {
+      color: #fff;
+      cursor: default;
+    }
+
+    .top-track-display.empty {
+      color: #555;
+      font-style: italic;
+    }
+
+    .top-track-input {
+      background: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 5px 9px;
+      color: #eee;
+      font-family: inherit;
+      font-size: 0.97rem;
+      width: 100%;
+      margin-top: 3px;
+      display: none;
+      transition: border-color 0.2s;
+    }
+
+    .edit-mode .top-track-input {
+      display: block;
+    }
+
+    .edit-mode .top-track-display {
+      display: none;
+    }
+
+    .top-track-input:focus {
+      outline: none;
+      border-color: #666;
+      box-shadow: 0 0 0 2px rgba(80,80,80,0.4);
+    }
+
+    .top-track-input::placeholder {
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 70px;
+      color: #444;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      .album {
+        gap: 14px;
+        padding: 12px;
+      }
+      .cover {
+        width: 100px;
+        height: 100px;
+      }
+      .edit-toggle {
+        top: 16px;
+        right: 16px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="edit-toggle" id="editToggle">Enter Edit Mode</button>
+
+  <div class="container">
+    <h1>Drake<br>Most Listened (by album)</h1>
+
+    <div class="grid">
+
+      <!-- So Far Gone -->
+      <div class="album">
+        <img src="sfg.png" alt="So Far Gone" class="cover">
+        <div class="info">
+          <div class="album-title">So Far Gone</div>
+          <div class="year">2009 / 2019</div>
+          <div class="top-track" data-album="so-far-gone">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Best I Ever Had">
+          </div>
+        </div>
+      </div>
+
+      <!-- Thank Me Later -->
+      <div class="album">
+        <img src="tml.jpg" alt="Thank Me Later" class="cover">
+        <div class="info">
+          <div class="album-title">Thank Me Later</div>
+          <div class="year">2010</div>
+          <div class="top-track" data-album="thank-me-later">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Over">
+          </div>
+        </div>
+      </div>
+
+      <!-- Take Care -->
+      <div class="album">
+        <img src="tc.jpg" alt="Take Care" class="cover">
+        <div class="info">
+          <div class="album-title">Take Care</div>
+          <div class="year">2011</div>
+          <div class="top-track" data-album="take-care">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Headlines">
+          </div>
+        </div>
+      </div>
+
+      <!-- Nothing Was The Same -->
+      <div class="album">
+        <img src="nwts.png" alt="Nothing Was The Same" class="cover">
+        <div class="info">
+          <div class="album-title">Nothing Was The Same</div>
+          <div class="year">2013</div>
+          <div class="top-track" data-album="nothing-was-the-same">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Started From the Bottom">
+          </div>
+        </div>
+      </div>
+
+      <!-- If You're Reading This It's Too Late -->
+      <div class="album">
+        <img src="iyrtitl.png" alt="If You're Reading This It's Too Late" class="cover">
+        <div class="info">
+          <div class="album-title">If You're Reading This It's Too Late</div>
+          <div class="year">2015</div>
+          <div class="top-track" data-album="iyrtitl">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Know Yourself">
+          </div>
+        </div>
+      </div>
+
+      <!-- What a Time to Be Alive (inserted here chronologically after IYRTITL and before Views) -->
+      <div class="album">
+        <img src="wattba.jpg" alt="What a Time to Be Alive" class="cover">
+        <div class="info">
+          <div class="album-title">What a Time to Be Alive</div>
+          <div class="year">2015 (w/ Future)</div>
+          <div class="top-track" data-album="wattba">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Jumpman">
+          </div>
+        </div>
+      </div>
+
+      <!-- Views -->
+      <div class="album">
+        <img src="views.jpeg" alt="Views" class="cover">
+        <div class="info">
+          <div class="album-title">Views</div>
+          <div class="year">2016</div>
+          <div class="top-track" data-album="views">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. One Dance">
+          </div>
+        </div>
+      </div>
+
+      <!-- More Life -->
+      <div class="album">
+        <img src="ml.jpg" alt="More Life" class="cover">
+        <div class="info">
+          <div class="album-title">More Life</div>
+          <div class="year">2017</div>
+          <div class="top-track" data-album="more-life">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Passionfruit">
+          </div>
+        </div>
+      </div>
+
+      <!-- Scorpion -->
+      <div class="album">
+        <img src="scorpion.jpg" alt="Scorpion" class="cover">
+        <div class="info">
+          <div class="album-title">Scorpion</div>
+          <div class="year">2018</div>
+          <div class="top-track" data-album="scorpion">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. God's Plan">
+          </div>
+        </div>
+      </div>
+
+      <!-- Care Package -->
+      <div class="album">
+        <img src="carepackage.jpeg" alt="Care Package" class="cover">
+        <div class="info">
+          <div class="album-title">Care Package</div>
+          <div class="year">2019</div>
+          <div class="top-track" data-album="care-package">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. The Motion">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Lane Demo Tapes -->
+      <div class="album">
+        <img src="dldt.png" alt="Dark Lane Demo Tapes" class="cover">
+        <div class="info">
+          <div class="album-title">Dark Lane Demo Tapes</div>
+          <div class="year">2020</div>
+          <div class="top-track" data-album="dark-lane">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Toosie Slide">
+          </div>
+        </div>
+      </div>
+
+      <!-- Certified Lover Boy -->
+      <div class="album">
+        <img src="clb.png" alt="Certified Lover Boy" class="cover">
+        <div class="info">
+          <div class="album-title">Certified Lover Boy</div>
+          <div class="year">2021</div>
+          <div class="top-track" data-album="clb">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Way 2 Sexy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Honestly, Nevermind -->
+      <div class="album">
+        <img src="hm.png" alt="Honestly, Nevermind" class="cover">
+        <div class="info">
+          <div class="album-title">Honestly, Nevermind</div>
+          <div class="year">2022</div>
+          <div class="top-track" data-album="honestly-nevermind">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Jimmy Cooks">
+          </div>
+        </div>
+      </div>
+
+      <!-- Her Loss -->
+      <div class="album">
+        <img src="hl.png" alt="Her Loss" class="cover">
+        <div class="info">
+          <div class="album-title">Her Loss</div>
+          <div class="year">2022</div>
+          <div class="top-track" data-album="her-loss">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. Rich Flex">
+          </div>
+        </div>
+      </div>
+
+      <!-- For All The Dogs -->
+      <div class="album">
+        <img src="fatd.png" alt="For All The Dogs" class="cover">
+        <div class="info">
+          <div class="album-title">For All The Dogs</div>
+          <div class="year">2023</div>
+          <div class="top-track" data-album="fatd">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="e.g. First Person Shooter">
+          </div>
+        </div>
+      </div>
+
+      <!-- $ome $exy $ongs 4 U -->
+      <div class="album">
+        <img src="sss4u.png" alt="$ome $exy $ongs 4 U" class="cover">
+        <div class="info">
+          <div class="album-title">$ome $exy $ongs 4 U</div>
+          <div class="year">2025</div>
+          <div class="top-track" data-album="sss4u">
+            Top track: <span class="top-track-display empty">—</span>
+            <input type="text" class="top-track-input" placeholder="your #1 here">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Copyright (C) Nullman 2026.
+	Your personal Drake ranking, values saved in your browser.
+  </footer>
+
+  <script>
+    const editToggle = document.getElementById('editToggle');
+    const body = document.body;
+
+    editToggle.addEventListener('click', () => {
+      body.classList.toggle('edit-mode');
+      if (body.classList.contains('edit-mode')) {
+        editToggle.textContent = 'Exit Edit Mode';
+      } else {
+        editToggle.textContent = 'Enter Edit Mode';
+      }
+    });
+
+    document.querySelectorAll('.top-track').forEach(track => {
+      const key = `drake-top-${track.dataset.album}`;
+      const display = track.querySelector('.top-track-display');
+      const input = track.querySelector('.top-track-input');
+
+      const saved = localStorage.getItem(key);
+      if (saved && saved.trim()) {
+        display.textContent = saved.trim();
+        display.classList.remove('empty');
+      }
+
+      input.addEventListener('blur', () => {
+        const value = input.value.trim();
+        localStorage.setItem(key, value);
+        display.textContent = value || '—';
+        display.classList.toggle('empty', !value);
+      });
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          input.blur();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

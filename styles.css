@@ -71,6 +71,13 @@
  * Main Customizations
  *----------------------------------------------------------------------------*/
 
+@font-face {
+    font-family: 'Anthropic Serif';
+    src: url('/anthropic-serif.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     font-family: var(--font-serif);
     /* font-family: Helvetica, Arial, sans-serif; */
@@ -86,6 +93,7 @@ html {
 
 body {
     background-color: var(--background);
+    font-family: 'Anthropic Serif', Georgia, serif;
     color: var(--primary);
     font-family: var(--font-serif);
     font-size: 1rem;

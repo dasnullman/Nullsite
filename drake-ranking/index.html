@@ -7,7 +7,7 @@
   <style>
     @font-face {
       font-family: 'Anthropic Serif';
-      src: url('anthropic-serif.woff2') format('woff2');
+      src: url('/anthropic-serif.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
     }
@@ -19,8 +19,8 @@
     }
 
     body {
-      background: #0a0a0a;
-      color: #e0e0e0;
+      background: #faf9f5;
+      color: #141413;
       font-family: 'Anthropic Serif', Georgia, serif;
       line-height: 1.45;
       min-height: 100vh;
@@ -39,7 +39,7 @@
       text-align: center;
       letter-spacing: -0.03em;
       margin-bottom: 50px;
-      color: #fff;
+      color: #141413;
     }
 
     .edit-toggle {
@@ -47,9 +47,9 @@
       top: 20px;
       right: 20px;
       z-index: 100;
-      background: #222;
-      color: #ccc;
-      border: 1px solid #444;
+      background: #f3efe6;
+      color: #141413;
+      border: 1px solid #d8d2c4;
       border-radius: 6px;
       padding: 10px 16px;
       font-family: inherit;
@@ -58,14 +58,14 @@
     }
 
     .edit-toggle:hover {
-      background: #333;
-      color: #fff;
-      border-color: #666;
+      background: #ebe4d6;
+      color: #141413;
+      border-color: #bfb6a3;
     }
 
     .edit-mode .edit-toggle {
-      background: #444;
-      color: #ffdd57;
+      background: #e2d8c4;
+      color: #141413;
     }
 
     .grid {
@@ -78,16 +78,16 @@
       display: flex;
       gap: 16px;
       padding: 12px;
-      background: #111;
+      background: #fdfcf8;
       border-radius: 10px;
-      border: 1px solid #1a1a1a;
+      border: 1px solid #ddd5c7;
       transition: all 0.2s ease;
     }
 
     .album:hover {
       transform: translateY(-3px);
-      border-color: #333;
-      background: #161616;
+      border-color: #bfb6a3;
+      background: #f3efe6;
     }
 
     .cover {
@@ -109,38 +109,38 @@
     .album-title {
       font-size: 1.35rem;
       margin-bottom: 3px;
-      color: #ffffff;
+      color: #141413;
     }
 
     .year {
       font-size: 0.9rem;
-      color: #777;
+      color: #6b665c;
       margin-bottom: 6px;
     }
 
     .top-track {
       font-size: 1rem;
-      color: #bbb;
+      color: #4f4b43;
       margin-top: 2px;
       min-height: 1.3em;
     }
 
     .top-track-display {
-      color: #fff;
+      color: #141413;
       cursor: default;
     }
 
     .top-track-display.empty {
-      color: #555;
+      color: #8a8478;
       font-style: italic;
     }
 
     .top-track-input {
-      background: #1a1a1a;
-      border: 1px solid #444;
+      background: #faf9f5;
+      border: 1px solid #d8d2c4;
       border-radius: 6px;
       padding: 5px 9px;
-      color: #eee;
+      color: #141413;
       font-family: inherit;
       font-size: 0.97rem;
       width: 100%;
@@ -159,18 +159,21 @@
 
     .top-track-input:focus {
       outline: none;
-      border-color: #666;
-      box-shadow: 0 0 0 2px rgba(80,80,80,0.4);
+      border-color: #b09f7a;
+      box-shadow: 0 0 0 2px rgba(176,159,122,0.2);
     }
 
     .top-track-input::placeholder {
-      color: #666;
+      color: #8a8478;
     }
 
     footer {
       text-align: center;
       margin-top: 70px;
-      color: #444;
+      padding-top: 24px;
+      border-top: 1px solid #ddd5c7;
+      color: #6b665c;
+      background: #faf9f5;
       font-size: 0.9rem;
     }
 
